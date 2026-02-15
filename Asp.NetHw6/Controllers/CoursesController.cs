@@ -7,22 +7,24 @@ namespace Asp.NetHw6.Controllers
     public class CoursesController : Controller
     {
         private readonly CoursesRepository _courses;
-        private readonly CoursesRepository _subscribedCourses;
+        private readonly User _user;
 
-        public CoursesController(CoursesRepository courses, CoursesRepository subscribedCourses)
+        public CoursesController(CoursesRepository courses, User user)
         {
             _courses = courses;
-            _subscribedCourses = subscribedCourses;
+            _user = user;
         }
 
         public IActionResult Index(string id)
         {
-            return View(new CoursesIndexViewModel(_courses.Courses, _subscribedCourses.Courses));
+            return View(new CoursesIndexViewModel(_courses.Courses, _user));
         }
 
-        //public IAct   ionResult Add(int courseId)
-        //{
-            
-        //}
+        public IActionResult Add(int courseId)
+        {
+            Course course = _courses.Courses.FirstOrDefault(c => c.Id == courseId);
+            _user.Subscribe(course);
+            return RedirectToAction("Index");
+        }
     }
 }

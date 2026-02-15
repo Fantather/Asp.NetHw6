@@ -2,5 +2,5 @@
 
 namespace Asp.NetHw6.ViewModels.Courses
 {
-    public record class CoursesIndexViewModel(IEnumerable<Course> Courses, IEnumerable<Course> SubscribedCourses);
+    public record class CoursesIndexViewModel(IEnumerable<Course> Courses, User User);
 }
