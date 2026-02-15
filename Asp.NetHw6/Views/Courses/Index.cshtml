@@ -1,0 +1,42 @@
+﻿@model Asp.NetHw6.ViewModels.Courses.CoursesIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@* Список всех курсов *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Courses list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @item.Name | @item.Price $
+                    <button action="/Subscribe/@item.Id">Subscribe</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    @* Список курсов, на которые подписан пользователь *@
+    <thead>
+        <tr>
+            <th>Subscribed courses list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SubscribedCourses)
+        {
+            <tr>
+                <td>
+                    @item.Name | @item.Price $
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
