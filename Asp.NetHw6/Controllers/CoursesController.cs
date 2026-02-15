@@ -20,7 +20,7 @@ namespace Asp.NetHw6.Controllers
             return View(new CoursesIndexViewModel(_courses.Courses, _user));
         }
 
-        public IActionResult Add(int courseId)
+        public IActionResult Subscribe(int courseId)
         {
             Course course = _courses.Courses.FirstOrDefault(c => c.Id == courseId);
             _user.Subscribe(course);
